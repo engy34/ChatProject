@@ -7,7 +7,6 @@ D:\PostLand\JIC.ChatApp\JIC.ChatApp\bin\Debug\net5.0\JIC.ChatApp.runtimeconfig.d
 D:\PostLand\JIC.ChatApp\JIC.ChatApp\bin\Debug\net5.0\JIC.ChatApp.dll
 D:\PostLand\JIC.ChatApp\JIC.ChatApp\bin\Debug\net5.0\JIC.ChatApp.pdb
 D:\PostLand\JIC.ChatApp\JIC.ChatApp\bin\Debug\net5.0\JIC.ChatApp.Views.dll
-D:\PostLand\JIC.ChatApp\JIC.ChatApp\bin\Debug\net5.0\JIC.ChatApp.Views.pdb
 D:\PostLand\JIC.ChatApp\JIC.ChatApp\bin\Debug\net5.0\EntityFramework.SqlServer.dll
 D:\PostLand\JIC.ChatApp\JIC.ChatApp\bin\Debug\net5.0\EntityFramework.dll
 D:\PostLand\JIC.ChatApp\JIC.ChatApp\bin\Debug\net5.0\Humanizer.dll
@@ -56,8 +55,6 @@ D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\JIC.ChatApp.AssemblyInfoInp
 D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\JIC.ChatApp.AssemblyInfo.cs
 D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\JIC.ChatApp.csproj.CoreCompileInputs.cache
 D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\JIC.ChatApp.MvcApplicationPartsAssemblyInfo.cache
-D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\JIC.ChatApp.RazorAssemblyInfo.cache
-D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\JIC.ChatApp.RazorAssemblyInfo.cs
 D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\scopedcss\bundle\JIC.ChatApp.styles.css
 D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\staticwebassets\JIC.ChatApp.StaticWebAssets.Manifest.cache
 D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\staticwebassets\JIC.ChatApp.StaticWebAssets.Pack.cache
@@ -65,19 +62,7 @@ D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\staticwebassets\msbuild.JIC
 D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\staticwebassets\msbuild.build.JIC.ChatApp.props
 D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\staticwebassets\msbuild.buildMultiTargeting.JIC.ChatApp.props
 D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\staticwebassets\msbuild.buildTransitive.JIC.ChatApp.props
-D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\JIC.ChatApp.TagHelpers.input.cache
-D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\JIC.ChatApp.TagHelpers.output.cache
-D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\JIC.ChatApp.RazorCoreGenerate.cache
-D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\Razor\Pages\Error.cshtml.g.cs
-D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\Razor\Pages\Index.cshtml.g.cs
-D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\Razor\Pages\Privacy.cshtml.g.cs
-D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\Razor\Pages\Shared\_Layout.cshtml.g.cs
-D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\Razor\Pages\Shared\_ValidationScriptsPartial.cshtml.g.cs
-D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\Razor\Pages\_ViewImports.cshtml.g.cs
-D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\Razor\Pages\_ViewStart.cshtml.g.cs
 D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\JIC.ChatApp.RazorTargetAssemblyInfo.cache
-D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\JIC.ChatApp.RazorTargetAssemblyInfo.cs
-D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\JIC.ChatApp.Views.pdb
 D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\JIC.ChatApp.csproj.CopyComplete
 D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\JIC.ChatApp.dll
 D:\PostLand\JIC.ChatApp\JIC.ChatApp\obj\Debug\net5.0\refint\JIC.ChatApp.dll

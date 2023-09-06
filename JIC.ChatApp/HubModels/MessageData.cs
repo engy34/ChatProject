@@ -6,7 +6,7 @@ namespace JIC.ChatApp.HubModels
     {
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
-        public Guid GroupId { get; set; }
+        public Guid? GroupId { get; set; }
         public string Msg { get; set; }
         public DateTime? Time { get; set; }
         private User user { get; set; }

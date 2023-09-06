@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 
@@ -13,7 +14,6 @@ namespace JIC.ChatApp.HubModels
     public class BaseHub : Hub<IChat>
     {
         private readonly JICChatAppContext _context;
-        private static Dictionary<string, string> ChatGroups = new Dictionary<string, string>();
         public BaseHub(JICChatAppContext context)
         {
             _context = context;
@@ -32,8 +32,6 @@ namespace JIC.ChatApp.HubModels
             string currSignalrID = Context.ConnectionId;
             Person tempPerson =await _context.Person.Where(p => p.Username == personInfo.userName && p.Password == personInfo.password)
                 .SingleOrDefaultAsync();
-          
-
 
             if (tempPerson != null) //if credentials are correct
             {
@@ -60,20 +58,6 @@ namespace JIC.ChatApp.HubModels
                 await Clients.Caller.authMeResponseFail();
             }
         }
-        public async Task askServer(string ClientText)
-        {
-            string tempString;
-            if (ClientText == "key")
-            {
-                tempString = "message was 'key'";
-            }
-            else
-            {
-                tempString = "message was somethign else";
-            }
-            await Clients.Clients(this.Context.ConnectionId).askServerResponse();
-
-        }
 
         public async Task reauthMe(Guid personId)
         {
@@ -89,7 +73,7 @@ namespace JIC.ChatApp.HubModels
                    _context.Connection.RemoveRange(tempConn);
                     await _context.SaveChangesAsync();
                 }
-                Console.WriteLine("\n" + tempPerson.Name + "logged in " + "\n signalrId" + currSignalrId);
+              
                 Connection currUser = new Connection
                 {
                     PersonId = tempPerson.Id,
@@ -99,7 +83,7 @@ namespace JIC.ChatApp.HubModels
 
                 await _context.Connection.AddAsync(currUser);
                 await _context.SaveChangesAsync();
-
+         
                 User newUser = new User(tempPerson.Id, tempPerson.Name, currSignalrId);
                 await Clients.Caller.reauthMeResponse(newUser);
                 await Clients.Others.userOn(newUser);
@@ -112,20 +96,11 @@ namespace JIC.ChatApp.HubModels
         public async Task getOnlineUsers()
         {
             Guid currUserId = _context.Connection.Where(c => c.SignalId == Context.ConnectionId).Select(c => c.PersonId).SingleOrDefault();
-            List<MessageData> messageData = await _context.Messages.Where(p => p.UserId != currUserId
-                 && string.IsNullOrEmpty(p.GroupId.ToString())).Select(
-                 x => new MessageData
-                 {
-                     Id = x.Id,
-                     UserId = x.UserId,
-                     GroupId = x.GroupId,
-                     Msg = x.Msg,
-                     Time = x.Time
-                 }).ToListAsync();
+          
             List<User> onlineUsers = _context.Connection
                 .Where(c => c.PersonId != currUserId)
                 .Select(c =>
-                    new User(c.PersonId, _context.Person.Where(p => p.Id == c.PersonId).Select(p => p.Name).SingleOrDefault(), c.SignalId,messageData)
+                    new User(c.PersonId, _context.Person.Where(p => p.Id == c.PersonId).Select(p => p.Name).SingleOrDefault(), c.SignalId)
                 ).ToList();
             await Clients.Caller.getOnlineUsersResponse(onlineUsers);
         }
@@ -139,6 +114,18 @@ namespace JIC.ChatApp.HubModels
             await Clients.Caller.getAvailableGroupsResponse(AvailableGroups);
 
         }
+        public async Task GetUserMsgs(string UserId,string ReceiverId)
+        { List<Guid> ids = new List<Guid>();
+            ids.Add(Guid.Parse( UserId));
+            ids.Add(Guid.Parse(ReceiverId));
+            var messages = await _context.Messages.Where(x =>ids.Contains(x.UserId)&&ids.Contains((Guid)x.ReceiverId)  ).OrderBy(x => x.Time).ToListAsync();
+            await Clients.Caller.GetUserMsgsResponse(messages);
+        }
+        public async Task GetUserGrpMsgs(string groupId) 
+        {
+            var GrpMessages = await _context.Messages.Where(x => x.GroupId == Guid.Parse(groupId)).ToListAsync();
+             await Clients.Caller.GetUserMsgsResponse(GrpMessages);
+        }
         public void logOut(Guid personId)
         {
 
@@ -149,10 +136,26 @@ namespace JIC.ChatApp.HubModels
 
 
         }
-        public async Task sendMsg(string connId, string msg)
+        public async Task sendMsg(string SenderId,string connIdReciver, string msg)
         {
-
-            await Clients.Client(connId).sendMsgResponse(Context.ConnectionId, msg);
+            try
+            {
+                var ReceiverId = await _context.Connection.Where(x => x.SignalId == connIdReciver).Select(x=>x.PersonId).FirstOrDefaultAsync();
+                Messages newMsg = new Messages
+                {
+                    Id = Guid.NewGuid(),
+                    UserId =Guid.Parse(SenderId),
+                    ReceiverId= ReceiverId,
+                    Msg = msg,
+                    Time = DateTime.Now,
+                };
+                await _context.Messages.AddAsync(newMsg);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex) {
+            
+            }
+            await Clients.Client(connIdReciver).sendMsgResponse(Context.ConnectionId, msg);
 
         }
         public async Task SendGrpMsg(string senderId, string groupId, string message)
@@ -204,7 +207,7 @@ namespace JIC.ChatApp.HubModels
                         UserId = data.UserId.ToString(),
                         GroupId = CurrGroup.GroupId.ToString()
                     };
-                    ChatGroups[data.ConnId] = data.GroupName;
+
 
                     await Groups.AddToGroupAsync(data.ConnId, data.GroupName);
                     
