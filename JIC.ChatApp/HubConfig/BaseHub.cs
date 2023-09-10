@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -227,6 +228,18 @@ namespace JIC.ChatApp.HubModels
                 var tt = ex;
             }
 
+        }
+
+        public async Task SendVoiceData(Blob[] voiceData,string connIdReciver)
+        {
+            try
+            {
+                //await Clients.Client(connIdReciver).BroadcastVoiceData(voiceData);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
     }
 }

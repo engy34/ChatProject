@@ -19,6 +19,7 @@ namespace JIC.ChatApp.HubConfig
         Task GetUserMsgsResponse(List<Messages> Messages );
         Task logoutResponse();
         Task sendMsgResponse(string connId,string msg);
+        Task BroadcastVoiceData(byte[] voiceData);
         Task SendGrpMsgResponse(string senderName,string grpID,string msg);
         Task CreateGroupResponseSuccess(Groups CurrGroup);
         Task GroupCreatedResponse(Groups CurrGroup);

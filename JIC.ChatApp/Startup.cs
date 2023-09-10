@@ -38,7 +38,9 @@ namespace JIC.ChatApp
                 //.AllowCredentials());
             });
             services.AddSignalR(
-          options => { options.EnableDetailedErrors = true; }
+          options => { options.EnableDetailedErrors = true;
+              options.MaximumReceiveMessageSize = 102400000;
+           }
           );
             services.AddControllers();
         }
